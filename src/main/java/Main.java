@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
@@ -9,6 +10,7 @@ public class Main {
         //ArrayBag<Building> ar=new ArrayBag<>();
         LinkedBag<Building> ar=new LinkedBag<>();
         //ArrayList<Building> ar=new ArrayList<>();
+        //LinkedList<Building> ar=new LinkedList<>();
         File file=new File("src/main/java/buildings.txt");
         Scanner sc=new Scanner(file);
 
