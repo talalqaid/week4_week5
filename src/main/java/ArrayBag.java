@@ -68,8 +68,6 @@ public class ArrayBag<T> implements BagInterface<T> {
         return false;
     }
 
-
-
     @Override
     public void clear() {
         Arrays.fill(bag, 0, numberOfEntries, null);
@@ -110,10 +108,12 @@ public class ArrayBag<T> implements BagInterface<T> {
     }
 
     private boolean isArrayFull() {
+
         return numberOfEntries == bag.length;
     }
 
     private void doubleCapacity() {
+
         bag = Arrays.copyOf(bag, bag.length * 2);
     }
 

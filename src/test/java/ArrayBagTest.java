@@ -8,8 +8,10 @@ class ArrayBagTest {
     void addTest() {
         ArrayBag<Building> ar=new ArrayBag<>();
         Building b1=new Building("Peter","111 Main St");
+        Building b2=new Building("Jhon","111 Main St");
         ar.add(b1);
         assertTrue(ar.contains(b1));
+        assertFalse(ar.contains(b2));
     }
     @Test
     void removeTest() {
@@ -32,32 +34,33 @@ class ArrayBagTest {
         );
 
         ar.add(b1);
-        ar.remove(b1);
+        ar.remove(b2);
         assertAll(
-                ()->assertFalse(ar.contains(b1)),
-                ()->assertTrue(ar.contains(b2))
+                ()->assertFalse(ar.contains(b2)),
+                ()->assertTrue(ar.contains(b1))
         );
-
-        
     }
     @Test
     void getTest() {
         ArrayBag<Building> ar=new ArrayBag<>();
         Building b1=new Building("Peter","111 Main St");
+        Building b2=new Building("Jhon","111 Main St");
         ar.add(b1);
-        assertTrue(b1.equals(ar.get(ar.size()-1)));
+        ar.add(b2);
+        assertTrue(b1.equals(ar.get(0)));
+        assertTrue(b2.equals(ar.get(1)));
     }
     @Test
     void sizeTest() {
         ArrayBag<Building> ar=new ArrayBag<>();
         Building b1=new Building("Peter","111 Main St");
+        Building b2=new Building("Jhon","111 Main St");
         ar.add(b1);
         assertEquals(1,ar.size());
-        ar.add(b1);
+        ar.add(b2);
         assertEquals(2,ar.size());
         ar.remove(b1);
         assertEquals(1,ar.size());
-
     }
 
     @Test
@@ -83,6 +86,7 @@ class ArrayBagTest {
         Building b1=new Building("Peter","111 Main St");
         ar.add(b1);
         ar.add(b1);
+        assertFalse(ar.isEmpty());
         ar.clear();
         assertTrue(ar.isEmpty());
     }

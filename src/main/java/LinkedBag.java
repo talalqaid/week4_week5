@@ -124,6 +124,18 @@ public class LinkedBag<T> implements BagInterface<T> {
         return false;
     }
 
+    public int search(T anEntry) {
+        Node<T> currentNode = head;
+        int index=0;
+        while (currentNode != null) {
+            if (currentNode.data.equals(anEntry)) {
+                return index;
+            }
+            currentNode = currentNode.next;
+            index++;
+        }
+        return -1;
+    }
     public T[] toArray(Class<T> type) {
         T[] result = (T[]) Array.newInstance(type, numberOfEntries);
 

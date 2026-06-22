@@ -44,8 +44,10 @@ class LinkedBagTest {
     void getTest() {
         LinkedBag<Building> ar=new LinkedBag<>();
         Building b1=new Building("Peter","111 Main St");
+        Building b2=new Building("John","111 Main St");
         ar.add(b1);
-        assertTrue(b1.equals(ar.get(ar.size()-1)));
+        ar.add(b2);
+        assertTrue(b1.equals(ar.get(1)));
     }
     @Test
     void sizeTest() {

@@ -8,9 +8,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         //ArrayBag<Building> ar=new ArrayBag<>();
-        LinkedBag<Building> ar=new LinkedBag<>();
+        //LinkedBag<Building> ar=new LinkedBag<>();
         //ArrayList<Building> ar=new ArrayList<>();
-        //LinkedList<Building> ar=new LinkedList<>();
+        LinkedList<Building> ar=new LinkedList<>();
         File file=new File("src/main/java/buildings.txt");
         Scanner sc=new Scanner(file);
 
@@ -42,9 +42,11 @@ public class Main {
             }
         }
         sc.close();
+        ar.remove(1);
         for(int i=0;i<ar.size();i++){
-            System.out.print("Building:"+i+"\n");
+            System.out.print("Building:"+(i+1)+"\n");
             System.out.println(ar.get(i));
         }
+
     }
 }
