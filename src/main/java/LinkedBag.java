@@ -39,6 +39,10 @@ public class LinkedBag<T> implements BagInterface<T> {
 
     @Override
     public T get(int index) {
+        if (index < 0 || index >= numberOfEntries) {
+            return null;
+        }
+        index=numberOfEntries-index-1;
         Node<T> current = head;
         for (int i = 0; i < index; i++) {
             current = current.next;
@@ -58,18 +62,28 @@ public class LinkedBag<T> implements BagInterface<T> {
     }
 
     @Override
-    public boolean remove(int index){
-        Node<T> current = head;
-        for (int i = 0; i < index; i++) {
-            current = current.next;
+    public boolean remove(int index) {
+        if (index < 0 || index >= numberOfEntries) {
+            return false;
         }
-        if (current.next != null) {
-            current.next = current.next.next;
+        index=numberOfEntries-index-1;
+        if (index == 0) {
+            head = head.next;
             numberOfEntries--;
             return true;
         }
-        return false;
 
+        Node<T> current = head;
+        Node<T> previous = null;
+
+        for (int i = 0; i < index; i++) {
+            previous = current;
+            current = current.next;
+        }
+
+        previous.next = current.next;
+        numberOfEntries--;
+        return true;
     }
 
     @Override
@@ -129,7 +143,7 @@ public class LinkedBag<T> implements BagInterface<T> {
         int index=0;
         while (currentNode != null) {
             if (currentNode.data.equals(anEntry)) {
-                return index;
+                return numberOfEntries-index-1;
             }
             currentNode = currentNode.next;
             index++;

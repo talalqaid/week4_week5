@@ -12,7 +12,7 @@ class LinkedBagTest {
         assertTrue(ar.contains(b1));
     }
     @Test
-    void removeTest() {
+    void removeLastTest(){
         LinkedBag<Building> ar=new LinkedBag<>();
         Building b1=new Building("Peter","111 Main St");
         Building b2=new Building("Jhon","111 Main St");
@@ -23,23 +23,34 @@ class LinkedBagTest {
                 ()-> assertFalse(ar.contains(b2)),
                 ()-> assertTrue(ar.contains(b1))
         );
-
+    }
+    @Test
+    void removeIndexTest() {
+        LinkedBag<Building> ar=new LinkedBag<>();
+        Building b1=new Building("Peter","111 Main St");
+        Building b2=new Building("Jhon","111 Main St");
+        ar.add(b1);
         ar.add(b2);
         ar.remove(0);
         assertAll(
                 ()-> assertFalse(ar.contains(b1)),
                 ()-> assertTrue(ar.contains(b2))
         );
-
-        ar.add(b1);
-        ar.remove(b1);
-        assertAll(
-                ()->assertFalse(ar.contains(b1)),
-                ()->assertTrue(ar.contains(b2))
-        );
-
-
     }
+    @Test
+    void removeObjectTest() {
+        LinkedBag<Building> ar=new LinkedBag<>();
+        Building b1=new Building("Peter","111 Main St");
+        Building b2=new Building("Jhon","111 Main St");
+        ar.add(b1);
+        ar.add(b2);
+        ar.remove(b2);
+        assertAll(
+                ()-> assertFalse(ar.contains(b2)),
+                ()-> assertTrue(ar.contains(b1))
+        );
+    }
+
     @Test
     void getTest() {
         LinkedBag<Building> ar=new LinkedBag<>();
@@ -47,7 +58,7 @@ class LinkedBagTest {
         Building b2=new Building("John","111 Main St");
         ar.add(b1);
         ar.add(b2);
-        assertTrue(b1.equals(ar.get(1)));
+        assertTrue(b2.equals(ar.get(1)));
     }
     @Test
     void sizeTest() {
@@ -102,5 +113,18 @@ class LinkedBagTest {
         assertEquals(1,ar.getFrequencyOf(b1));
         ar.add(b1);
         assertEquals(2,ar.getFrequencyOf(b1));
+    }
+
+    @Test
+    void searchTest(){
+        LinkedBag<Building> ar=new LinkedBag<>();
+        Building b1=new Building("Peter","111 Main St");
+        Building b2=new Building("Talal","111 Main St");
+        Building b3=new Building("John","111 Main St");
+        ar.add(b1);
+        ar.add(b2);
+        assertEquals(0,ar.search(b1));
+        assertEquals(1,ar.search(b2));
+        assertEquals(-1,ar.search(b3));
     }
 }
